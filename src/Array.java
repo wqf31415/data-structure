@@ -28,7 +28,7 @@ public class Array {
      * @return
      */
     public int getCapacity(){
-        return data.length;
+        return this.data.length;
     }
 
     /**
@@ -36,7 +36,7 @@ public class Array {
      * @return
      */
     public boolean isEmpty(){
-        return size == 0;
+        return this.size == 0;
     }
 
     /**
@@ -49,9 +49,14 @@ public class Array {
 //        }
 //        data[size] = e;
 //        size ++;
-        add(size,e);
+        this.add(size,e);
     }
 
+    /**
+     * 在指定索引位置插入元素
+     * @param index
+     * @param e
+     */
     public void add(int index, int e){
         if (size == data.length){
             throw new RuntimeException("AddLast failed. Array is full.");
@@ -59,7 +64,7 @@ public class Array {
         if (index <0 || index > size){
             throw new RuntimeException("AddLast failed. Require 0 =< index <= size.");
         }
-        for (int i = size-1;i>=index;i--){
+        for (int i = size-1; i>=index; i--){
             // 元素移位
             data[i + 1] = data[i];
         }
@@ -67,7 +72,38 @@ public class Array {
         size++;
     }
 
+    /**
+     * 在数组头部添加元素
+     * @param e
+     */
     public void addFirst(int e){
-        add(0, e);
+        this.add(0, e);
+    }
+
+    /**
+     * 获取指定索引的元素
+     * @param index
+     * @return
+     */
+    public int get(int index){
+        if (index<0 || index>=size){
+            throw new RuntimeException("Get failed. Index is illegal.");
+        }
+        return data[index];
+    }
+
+    @Override
+    public String toString(){
+        StringBuffer sb = new StringBuffer();
+        sb.append(String.format("Array size: %d, capacity: %d.\n", size, data.length));
+        sb.append('[');
+        for (int i = 0; i < size; i++) {
+            sb.append(data[i]);
+            if (i != size - 1){
+                sb.append(",");
+            }
+        }
+        sb.append(']');
+        return sb.toString();
     }
 }
