@@ -44,12 +44,30 @@ public class Array {
      * @param e
      */
     public void addLast(int e){
+//        if (size == data.length){
+//            throw new RuntimeException("AddLast failed. Array is full.");
+//        }
+//        data[size] = e;
+//        size ++;
+        add(size,e);
+    }
+
+    public void add(int index, int e){
         if (size == data.length){
             throw new RuntimeException("AddLast failed. Array is full.");
         }
-        data[size] = e;
-        size ++;
+        if (index <0 || index > size){
+            throw new RuntimeException("AddLast failed. Require 0 =< index <= size.");
+        }
+        for (int i = size-1;i>=index;i--){
+            // 元素移位
+            data[i + 1] = data[i];
+        }
+        data[index] = e;
+        size++;
     }
 
-
+    public void addFirst(int e){
+        add(0, e);
+    }
 }
