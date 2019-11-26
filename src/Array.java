@@ -92,6 +92,19 @@ public class Array {
         return data[index];
     }
 
+    /**
+     * 设置元素
+     * @param index
+     * @param e
+     * @return
+     */
+    public void set(int index, int e){
+        if (index<0 || index >= size){
+            throw new RuntimeException("Set failed. Index is illegal.");
+        }
+        data[index] = e;
+    }
+
     @Override
     public String toString(){
         StringBuffer sb = new StringBuffer();
