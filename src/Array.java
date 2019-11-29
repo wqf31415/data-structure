@@ -93,7 +93,7 @@ public class Array {
     }
 
     /**
-     * 设置元素
+     * 修改元素
      * @param index
      * @param e
      * @return
@@ -103,6 +103,44 @@ public class Array {
             throw new RuntimeException("Set failed. Index is illegal.");
         }
         data[index] = e;
+    }
+
+    /**
+     * 删除元素
+     * @param index 要删除元素的索引
+     * @return 删除的元素
+     */
+    public int remove(int index){
+        if (index<0 || index>= size){
+            throw new RuntimeException("Remove failed. Index is illegal.");
+        }
+        int temp = data[index];
+        // 将指定索引后面的元素都向前移一位
+        for (int i = index; i<size-1; i++){
+            data[i] = data[i+1];
+        }
+
+        // data[size] 处还存在元素，只是访问不到，也不会被 jvm 垃圾回收，被称为闲逛对象，可以将 data[size] 置为空或默认值，来释放该元素
+        data[size] = 0;
+
+        this.size--;
+        return temp;
+    }
+
+    /**
+     * 删除首个元素
+     * @return
+     */
+    public int removeFirst(){
+        return remove(0);
+    }
+
+    /**
+     * 删除末尾元素
+     * @return
+     */
+    public int removeLast(){
+        return remove(size-1);
     }
 
     @Override

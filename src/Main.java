@@ -13,5 +13,13 @@ public class Main {
         System.out.println(array);
 
         System.out.println(array.get(2));
+
+        // 删除元素
+        array.removeLast();
+        System.out.println(array);
+        array.remove(1);
+        System.out.println(array);
+        array.removeFirst();
+        System.out.println(array);
     }
 }
